@@ -8,7 +8,7 @@ namespace TelegramBotBase.Localizations
     {
         public Dictionary<String, String> Values = new Dictionary<string, string>();
 
-        public String this[String key]
+        public string this[String key]
         {
             get
             {

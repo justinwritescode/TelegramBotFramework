@@ -16,11 +16,11 @@ namespace TelegramBotBase.Controls.Inline
 
         public TreeViewNode VisibleNode { get; set; }
 
-        public String Title { get; set; }
+        public string Title { get; set; }
 
         private int? MessageId { get; set; }
 
-        public String MoveUpIcon { get; set; } = Localizations.Default.Language["TreeView_LevelUp"];
+        public string MoveUpIcon { get; set; } = Localizations.Default.Language["TreeView_LevelUp"];
 
         public TreeView()
         {
@@ -29,11 +29,11 @@ namespace TelegramBotBase.Controls.Inline
         }
 
 
-        public override async Task Action(MessageResult result, String value = null)
+        public override async Task Action(MessageResult result, string value = null)
         {
             await result.ConfirmAction();
 
-            if (result.Handled)
+            if (result.IsHandled)
                 return;
 
             var val = result.RawData;
@@ -45,7 +45,7 @@ namespace TelegramBotBase.Controls.Inline
 
                     this.VisibleNode = (this.VisibleNode?.ParentNode);
 
-                    result.Handled = true;
+                    result.IsHandled = true;
 
                     break;
                 default:
@@ -65,7 +65,7 @@ namespace TelegramBotBase.Controls.Inline
                         this.SelectedNode = (this.SelectedNode != n ? n : null);
                     }
 
-                    result.Handled = true;
+                    result.IsHandled = true;
 
 
                     break;
@@ -112,7 +112,7 @@ namespace TelegramBotBase.Controls.Inline
             }
         }
 
-        public String GetPath()
+        public string GetPath()
         {
             return (this.VisibleNode?.GetPath() ?? "\\");
         }

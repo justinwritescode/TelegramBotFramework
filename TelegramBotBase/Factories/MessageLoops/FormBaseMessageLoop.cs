@@ -13,18 +13,18 @@ using TelegramBotBase.Sessions;
 
 namespace TelegramBotBase.Factories.MessageLoops
 {
-    public class FormBaseMessageLoop : IMessageLoopFactory
+    public class FormBaseMessageLoopFactory : IMessageLoopFactory
     {
         private static object __evUnhandledCall = new object();
 
         private EventHandlerList __Events = new EventHandlerList();
 
-        public FormBaseMessageLoop()
+        public FormBaseMessageLoopFactory()
         {
 
         }
 
-        public async Task MessageLoop(BotBase Bot, DeviceSession session, UpdateResult ur, MessageResult mr)
+        public virtual async Task MessageLoop(BotBase Bot, DeviceSession session, UpdateResult ur, MessageResult mr)
         {
             var update = ur.RawData;
 
@@ -75,7 +75,7 @@ namespace TelegramBotBase.Factories.MessageLoops
             }
 
             //Action Event
-            if (!session.FormSwitched && mr.IsAction)
+            if (!session.HasFormBeenSwitched && mr.IsAction)
             {
                 //Send Action event to controls
                 await activeForm.ActionControls(mr);
@@ -83,15 +83,15 @@ namespace TelegramBotBase.Factories.MessageLoops
                 //Send Action event to form itself
                 await activeForm.Action(mr);
 
-                if (!mr.Handled)
+                if (!mr.IsHandled)
                 {
                     var uhc = new UnhandledCallEventArgs(ur.Message.Text, mr.RawData, session.DeviceId, mr.MessageId, ur.Message, session);
                     OnUnhandledCall(uhc);
 
                     if (uhc.Handled)
                     {
-                        mr.Handled = true;
-                        if (!session.FormSwitched)
+                        mr.IsHandled = true;
+                        if (!session.HasFormBeenSwitched)
                         {
                             return;
                         }
@@ -100,7 +100,7 @@ namespace TelegramBotBase.Factories.MessageLoops
 
             }
 
-            if (!session.FormSwitched)
+            if (!session.HasFormBeenSwitched)
             {
                 //Render Event
                 await activeForm.RenderControls(mr);
@@ -113,7 +113,7 @@ namespace TelegramBotBase.Factories.MessageLoops
         /// <summary>
         /// Will be called if no form handeled this call
         /// </summary>
-        public event EventHandler<UnhandledCallEventArgs> UnhandledCall
+        public virtual event EventHandler<UnhandledCallEventArgs> UnhandledCall
         {
             add
             {

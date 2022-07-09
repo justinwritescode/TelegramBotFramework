@@ -2,33 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TelegramBotBase.Extensions;
+using static TelegramBotBase.Extensions.DeviceIdExtensions;
+using TelegramBotBase.Interfaces;
 
 namespace TelegramBotBase.Base
 {
-    public partial class StateContainer
+    public partial class StateContainer : IStateContainer
     {
-        public List<StateEntry> States { get; set; }
+        public virtual IQueryable<StateEntry> States { get; set; } = new List<StateEntry>().AsQueryable();
 
-        public List<long> ChatIds
-        {
-            get
-            {
-                return States.Where(a => a.DeviceId > 0).Select(a => a.DeviceId).ToList();
-            }
-        }
+        public virtual IQueryable<long> ChatIds => States.Where(HasUserExpression).Select(ProjectDeviceIdExpression);
 
-        public List<long> GroupIds
-        {
-            get
-            {
-                return States.Where(a => a.DeviceId < 0).Select(a => a.DeviceId).ToList();
-            }
-        }
+        public virtual IQueryable<long> GroupIds => States.Where(HasGroupExpression).Select(ProjectDeviceIdExpression);
 
-        public StateContainer()
-        {
-            this.States = new List<StateEntry>();
-        }
+        public virtual IQueryable<long> DeviceIds => States.ProjectDeviceId();
 
+        public StateContainer() : this(Array.Empty<StateEntry>()) { }
+        public StateContainer(ICollection<StateEntry> states) : this(states.AsQueryable()) { }
+        public StateContainer(IQueryable<StateEntry> states) => States = states;
     }
 }

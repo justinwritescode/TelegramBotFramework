@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Language">
+		<value>Deutsch (German)</value>
+	</data>
+	<data name="ButtonGrid_Title">
+		<value>Menü</value>
+	</data>
+	<data name="ButtonGrid_NoItems">
+		<value>Es sind keine Einträge vorhanden.</value>
+	</data>
+	<data name="ButtonGrid_PreviousPage">
+		<value>◀️</value>
+	</data>
+	<data name="ButtonGrid_NextPage">
+		<value>▶️</value>
+	</data>
+	<data name="ButtonGrid_CurrentPage">
+		<value>Seite {0} von {1}</value>
+	</data>
+	<data name="ButtonGrid_SearchFeature">
+		<value>💡 Sende eine Nachricht um die Liste zu filtern. Klicke die 🔍 um den Filter zurückzusetzen.</value>
+	</data>
+	<data name="ButtonGrid_Back">
+		<value>Zurück</value>
+	</data>
+	<data name="ButtonGrid_CheckAll">
+		<value>Alle auswählen</value>
+	</data>
+	<data name="ButtonGrid_UncheckAll">
+		<value>Keine auswählen</value>
+	</data>
+	<data name="CalendarPicker_Title">
+		<value>Datum auswählen</value>
+	</data>
+	<data name="CalendarPicker_PreviousPage">
+		<value>◀️</value>
+	</data>
+	<data name="CalendarPicker_NextPage">
+		<value>▶️</value>
+	</data>
+	<data name="TreeView_Title">
+		<value>Knoten auswählen</value>
+	</data>
+	<data name="TreeView_LevelUp">
+		<value>🔼 Stufe hoch</value>
+	</data>
+	<data name="ToggleButton_On">
+		<value>An</value>
+	</data>
+	<data name="ToggleButton_Off">
+		<value>Aus</value>
+	</data>
+	<data name="ToggleButton_OnIcon">
+		<value>⚫</value>
+	</data>
+	<data name="ToggleButton_OffIcon">
+		<value>⚪</value>
+	</data>
+	<data name="ToggleButton_Title">
+		<value>Schalter</value>
+	</data>
+	<data name="ToggleButton_Changed">
+		<value>Ausgewählt</value>
+	</data>
+	<data name="MultiToggleButton_SelectedIcon">
+		<value>✅</value>
+	</data>
+	<data name="MultiToggleButton_Title">
+		<value>Mehrfach-Schalter</value>
+	</data>
+	<data name="MultiToggleButton_Changed">
+		<value>Ausgewählt</value>
+	</data>
+	<data name="PromptDialog_Back">
+		<value>Zurück</value>
+	</data>
+	<data name="ToggleButton_Changed">
+		<value>Einstellung geändert</value>
+	</data>
+</root>

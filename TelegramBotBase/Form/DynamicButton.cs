@@ -18,18 +18,18 @@ namespace TelegramBotBase.Form
             }
         }
 
-        private String m_text = "";
+        private string m_text = "";
 
         private Func<String> GetText;
 
-        public DynamicButton(String Text, String Value, String Url = null)
+        public DynamicButton(String Text, string Value, string Url = null)
         {
             this.Text = Text;
             this.Value = Value;
             this.Url = Url;
         }
 
-        public DynamicButton(Func<String> GetText, String Value, String Url = null)
+        public DynamicButton(Func<String> GetText, string Value, string Url = null)
         {
             this.GetText = GetText;
             this.Value = Value;

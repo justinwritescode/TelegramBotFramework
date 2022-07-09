@@ -19,13 +19,13 @@ namespace TelegramBotBase.Form
     public class AutoCleanForm : FormBase
     {
         [SaveState]
-        public List<int> OldMessages { get; set; }
+        public virtual List<int> OldMessages { get; set; }
 
         [SaveState]
-        public eDeleteMode DeleteMode { get; set; }
+        public virtual eDeleteMode DeleteMode { get; set; }
 
         [SaveState]
-        public eDeleteSide DeleteSide { get; set; }
+        public virtual eDeleteSide DeleteSide { get; set; }
 
 
 
@@ -87,7 +87,7 @@ namespace TelegramBotBase.Form
         /// Adds a message to this of removable ones
         /// </summary>
         /// <param name="Id"></param>
-        public void AddMessage(Message m)
+        public virtual void AddMessage(Message m)
         {
             this.OldMessages.Add(m.MessageId);
         }
@@ -97,7 +97,7 @@ namespace TelegramBotBase.Form
         /// Adds a message to this of removable ones
         /// </summary>
         /// <param name="Id"></param>
-        public void AddMessage(int messageId)
+        public virtual void AddMessage(int messageId)
         {
             this.OldMessages.Add(messageId);
         }
@@ -106,7 +106,7 @@ namespace TelegramBotBase.Form
         /// Keeps the message by removing it from the list
         /// </summary>
         /// <param name="Id"></param>
-        public void LeaveMessage(int Id)
+        public virtual void LeaveMessage(int Id)
         {
             this.OldMessages.Remove(Id);
         }
@@ -114,7 +114,7 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// Keeps the last sent message
         /// </summary>
-        public void LeaveLastMessage()
+        public virtual void LeaveLastMessage()
         {
             if (this.OldMessages.Count == 0)
                 return;
@@ -134,7 +134,7 @@ namespace TelegramBotBase.Form
         /// Cleans up all remembered messages.
         /// </summary>
         /// <returns></returns>
-        public async Task MessageCleanup()
+        public virtual async Task MessageCleanup()
         {
             var oldMessages = OldMessages.AsEnumerable();
 

@@ -18,12 +18,12 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// The message the users sees.
         /// </summary>
-        public String Message { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// The returned text value by the user.
         /// </summary>
-        public String Value { get; set; }
+        public string Value { get; set; }
 
         /// <summary>
         /// An additional optional value.
@@ -36,7 +36,7 @@ namespace TelegramBotBase.Form
 
         public bool ShowBackButton { get; set; } = false;
 
-        public String BackLabel { get; set; } = Localizations.Default.Language["PromptDialog_Back"];
+        public string BackLabel { get; set; } = Localizations.Default.Language["PromptDialog_Back"];
 
         /// <summary>
         /// Contains the RAW received message.
@@ -53,9 +53,9 @@ namespace TelegramBotBase.Form
             this.Message = Message;
         }
 
-        public async override Task Load(MessageResult message)
+        public override async Task Load(MessageResult message)
         {
-            if (message.Handled)
+            if (message.IsHandled)
                 return;
 
             if (!message.IsFirstHandler)
@@ -96,7 +96,7 @@ namespace TelegramBotBase.Form
             }
 
 
-            message.Handled = true;
+            message.IsHandled = true;
 
             OnCompleted(new PromptDialogCompletedEventArgs() { Tag = this.Tag, Value = this.Value });
 

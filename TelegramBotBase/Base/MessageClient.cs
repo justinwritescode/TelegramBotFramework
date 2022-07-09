@@ -22,7 +22,7 @@ namespace TelegramBotBase.Base
     {
 
 
-        public String APIKey { get; set; }
+        public string APIKey { get; set; }
 
         public ITelegramBotClient TelegramClient { get; set; }
 
@@ -82,7 +82,7 @@ namespace TelegramBotBase.Base
         /// <param name="APIKey"></param>
         /// <param name="proxyHost">i.e. 127.0.0.1</param>
         /// <param name="proxyPort">i.e. 10000</param>
-        public MessageClient(String APIKey, String proxyHost, int proxyPort)
+        public MessageClient(String APIKey, string proxyHost, int proxyPort)
         {
             this.APIKey = APIKey;
 

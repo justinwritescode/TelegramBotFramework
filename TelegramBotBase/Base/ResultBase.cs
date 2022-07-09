@@ -13,7 +13,7 @@ namespace TelegramBotBase.Base
 
         public virtual long DeviceId { get; set; }
 
-        public int MessageId
+        public virtual int MessageId
         {
             get
             {

@@ -19,7 +19,7 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// The message the users sees.
         /// </summary>
-        public String Message { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// An additional optional value.
@@ -55,7 +55,7 @@ namespace TelegramBotBase.Form
         {
             var call = message.GetData<CallbackData>();
 
-            message.Handled = true;
+            message.IsHandled = true;
 
             if (!message.IsAction)
                 return;

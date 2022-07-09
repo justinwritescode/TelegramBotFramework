@@ -18,7 +18,7 @@ namespace TelegramBotBase.Factories
         }
 
 
-        public FormBase CreateForm()
+        public virtual FormBase CreateForm()
         {
             return _startFormClass.GetConstructor(new Type[] { })?.Invoke(new object[] { }) as FormBase;
         }

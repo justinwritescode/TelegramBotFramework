@@ -12,7 +12,7 @@ namespace TelegramBotBase.Commands
         /// </summary>
         /// <param name="cmds"></param>
         /// <param name="description"></param>
-        public static void Start(this List<BotCommand> cmds, String description)
+        public static void Start(this List<BotCommand> cmds, string description)
         {
             cmds.Add(new BotCommand() { Command = "start", Description = description });
         }
@@ -22,7 +22,7 @@ namespace TelegramBotBase.Commands
         /// </summary>
         /// <param name="cmds"></param>
         /// <param name="description"></param>
-        public static void Help(this List<BotCommand> cmds, String description)
+        public static void Help(this List<BotCommand> cmds, string description)
         {
             cmds.Add(new BotCommand() { Command = "help", Description = description });
         }
@@ -32,7 +32,7 @@ namespace TelegramBotBase.Commands
         /// </summary>
         /// <param name="cmds"></param>
         /// <param name="description"></param>
-        public static void Settings(this List<BotCommand> cmds, String description)
+        public static void Settings(this List<BotCommand> cmds, string description)
         {
             cmds.Add(new BotCommand() { Command = "settings", Description = description });
         }
@@ -43,7 +43,7 @@ namespace TelegramBotBase.Commands
         /// <param name="cmds"></param>
         /// <param name="command"></param>
         /// <param name="description"></param>
-        public static void Add(this List<BotCommand> cmds, String command, String description)
+        public static void Add(this List<BotCommand> cmds, string command, string description)
         {
             cmds.Add(new BotCommand() { Command = command, Description = description });
         }

@@ -13,7 +13,7 @@ namespace TelegramBotBase.Args
             Values = new Dictionary<string, object>();
         }
 
-        public void Set(String key, String value)
+        public void Set(String key, string value)
         {
             Values[key] = value;
         }

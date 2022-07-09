@@ -12,17 +12,17 @@ namespace TelegramBotBase.Controls.Inline
     public class ToggleButton : ControlBase
     {
 
-        public String UncheckedIcon { get; set; } = Localizations.Default.Language["ToggleButton_OffIcon"];
+        public string UncheckedIcon { get; set; } = Localizations.Default.Language["ToggleButton_OffIcon"];
 
-        public String CheckedIcon { get; set; } = Localizations.Default.Language["ToggleButton_OnIcon"];
+        public string CheckedIcon { get; set; } = Localizations.Default.Language["ToggleButton_OnIcon"];
 
-        public String CheckedString { get; set; } = Localizations.Default.Language["ToggleButton_On"];
+        public string CheckedString { get; set; } = Localizations.Default.Language["ToggleButton_On"];
 
-        public String UncheckedString { get; set; } = Localizations.Default.Language["ToggleButton_Off"];
+        public string UncheckedString { get; set; } = Localizations.Default.Language["ToggleButton_Off"];
 
-        public String ChangedString { get; set; } = Localizations.Default.Language["ToggleButton_Changed"];
+        public string ChangedString { get; set; } = Localizations.Default.Language["ToggleButton_Changed"];
 
-        public String Title { get; set; } = Localizations.Default.Language["ToggleButton_Title"];
+        public string Title { get; set; } = Localizations.Default.Language["ToggleButton_Title"];
 
         public int? MessageId { get; set; }
 
@@ -41,7 +41,7 @@ namespace TelegramBotBase.Controls.Inline
 
         }
 
-        public ToggleButton(String CheckedString, String UncheckedString)
+        public ToggleButton(String CheckedString, string UncheckedString)
         {
             this.CheckedString = CheckedString;
             this.UncheckedString = UncheckedString;
@@ -64,10 +64,10 @@ namespace TelegramBotBase.Controls.Inline
             (this.Events[__evToggled] as EventHandler)?.Invoke(this, e);
         }
 
-        public override async Task Action(MessageResult result, String value = null)
+        public override async Task Action(MessageResult result, string value = null)
         {
 
-            if (result.Handled)
+            if (result.IsHandled)
                 return;
 
             await result.ConfirmAction(this.ChangedString);
@@ -108,7 +108,7 @@ namespace TelegramBotBase.Controls.Inline
 
             }
 
-            result.Handled = true;
+            result.IsHandled = true;
 
         }
 

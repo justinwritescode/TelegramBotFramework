@@ -16,7 +16,7 @@ namespace TelegramBotBase.Factories
             _lambda = lambda;
         }
 
-        public FormBase CreateForm()
+        public virtual FormBase CreateForm()
         {
             return _lambda();
         }

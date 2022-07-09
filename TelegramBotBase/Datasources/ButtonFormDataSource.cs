@@ -71,14 +71,14 @@ namespace TelegramBotBase.Datasources
             return ButtonForm.ToArray();
         }
 
-        public virtual ButtonForm PickItems(int start, int count, String filter = null)
+        public virtual ButtonForm PickItems(int start, int count, string filter = null)
         {
             ButtonForm bf = new ButtonForm();
             ButtonForm dataForm = null;
 
             if (filter == null)
             {
-                dataForm = ButtonForm.Duplicate();
+                dataForm = ButtonForm.Clone();
             }
             else
             {
@@ -101,7 +101,7 @@ namespace TelegramBotBase.Datasources
         public virtual ButtonForm PickAllItems(String filter = null)
         {
             if (filter == null)
-                return ButtonForm.Duplicate();
+                return ButtonForm.Clone();
 
 
             return ButtonForm.FilterDuplicate(filter, true);

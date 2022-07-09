@@ -27,7 +27,7 @@ namespace TelegramBotBase.Controls.Inline
 
         private int? MessageId { get; set; }
 
-        public String Title { get; set; } = Localizations.Default.Language["CalendarPicker_Title"];
+        public string Title { get; set; } = Localizations.Default.Language["CalendarPicker_Title"];
 
         public eMonthPickerMode PickerMode { get; set; }
 
@@ -51,7 +51,7 @@ namespace TelegramBotBase.Controls.Inline
 
 
 
-        public override async Task Action(MessageResult result, String value = null)
+        public override async Task Action(MessageResult result, string value = null)
         {
             await result.ConfirmAction();
 

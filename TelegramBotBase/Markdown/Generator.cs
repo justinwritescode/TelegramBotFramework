@@ -22,7 +22,7 @@ namespace TelegramBotBase.Markdown
         /// <param name="title"></param>
         /// <param name="tooltip"></param>
         /// <returns></returns>
-        public static String Link(this String url, String title = null, String tooltip = null)
+        public static string Link(this string url, string title = null, string tooltip = null)
         {
             switch (OutputMode)
             {
@@ -40,7 +40,7 @@ namespace TelegramBotBase.Markdown
         /// <param name="userId"></param>
         /// <param name="title"></param>
         /// <returns></returns>
-        public static String MentionUser(this int userId, String title = null)
+        public static string MentionUser(this int userId, string title = null)
         {
             return Link("tg://user?id=" + userId.ToString(), title);
         }
@@ -51,7 +51,7 @@ namespace TelegramBotBase.Markdown
         /// <param name="userId"></param>
         /// <param name="title"></param>
         /// <returns></returns>
-        public static String MentionUser(this String username, String title = null)
+        public static string MentionUser(this string username, string title = null)
         {
             return Link("tg://user?id=" + username, title);
         }
@@ -61,7 +61,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String Bold(this String text)
+        public static string Bold(this string text)
         {
             switch (OutputMode)
             {
@@ -78,7 +78,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String Strikesthrough(this String text)
+        public static string Strikesthrough(this string text)
         {
             switch (OutputMode)
             {
@@ -95,7 +95,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String Italic(this String text)
+        public static string Italic(this string text)
         {
             switch (OutputMode)
             {
@@ -112,7 +112,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String Underline(this String text)
+        public static string Underline(this string text)
         {
             switch (OutputMode)
             {
@@ -129,7 +129,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String Monospace(this String text)
+        public static string Monospace(this string text)
         {
             switch (OutputMode)
             {
@@ -146,7 +146,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String MultiMonospace(this String text)
+        public static string MultiMonospace(this string text)
         {
             switch (OutputMode)
             {
@@ -163,7 +163,7 @@ namespace TelegramBotBase.Markdown
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static String MarkdownV2Escape(this String text, params char[] toKeep)
+        public static string MarkdownV2Escape(this string text, params char[] toKeep)
         {
             char[] toEscape = new char[] { '_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!' };
 

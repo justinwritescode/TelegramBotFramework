@@ -10,12 +10,12 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// Contains the parent from where the modal dialog has been opened.
         /// </summary>
-        public FormBase ParentForm { get; set; }
+        public virtual FormBase ParentForm { get; set; }
 
         /// <summary>
         /// This is a modal only function and does everything to close this form.
         /// </summary>
-        public async Task CloseForm()
+        public virtual async Task CloseForm()
         {
             await this.CloseControls();
 

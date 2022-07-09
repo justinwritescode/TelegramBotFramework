@@ -14,7 +14,7 @@ namespace TelegramBotBase.Base
             RawData = rawData;
             Device = device;
 
-            
+
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public Update RawData { get; set; }
+        public virtual Update RawData { get; set; }
 
         public override Message Message
         {
@@ -44,10 +44,10 @@ namespace TelegramBotBase.Base
                     ?? RawData?.CallbackQuery?.Message;
             }
         }
-        
 
 
-        public DeviceSession Device
+
+        public virtual DeviceSession Device
         {
             get;
             set;

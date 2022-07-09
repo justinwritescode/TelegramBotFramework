@@ -22,7 +22,7 @@ namespace TelegramBotBase.Args
             }
         }
 
-        public String Get(String key)
+        public string Get(String key)
         {
             return Values[key].ToString();
         }

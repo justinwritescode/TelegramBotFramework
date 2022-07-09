@@ -15,7 +15,7 @@ namespace TelegramBotBase.States
     /// </summary>
     public class SimpleJSONStateMachine : IStateMachine
     {
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
         public bool Overwrite { get; set; }
 

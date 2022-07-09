@@ -15,9 +15,9 @@ namespace TelegramBotBase.Form
     [IgnoreState]
     public class AlertDialog : ConfirmDialog
     {
-        public String ButtonText { get; set; }
+        public virtual string ButtonText { get; set; }
 
-        public AlertDialog(String Message, String ButtonText) : base(Message)
+        public AlertDialog(String Message, string ButtonText) : base(Message)
         {
             this.Buttons.Add(new ButtonBase(ButtonText, "ok"));
             this.ButtonText = ButtonText;

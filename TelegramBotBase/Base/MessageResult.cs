@@ -29,7 +29,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public DeviceSession Device
+        public virtual DeviceSession Device
         {
             get;
             set;
@@ -38,7 +38,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// The message id
         /// </summary>
-        public new int MessageId
+        public override int MessageId
         {
             get
             {
@@ -49,7 +49,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public String Command
+        public virtual string Command
         {
             get
             {
@@ -57,7 +57,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public String MessageText
+        public virtual string MessageText
         {
             get
             {
@@ -65,7 +65,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public Telegram.Bot.Types.Enums.MessageType MessageType
+        public virtual Telegram.Bot.Types.Enums.MessageType MessageType
         {
             get
             {
@@ -73,7 +73,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public Message Message
+        public virtual Message Message
         {
             get
             {
@@ -88,7 +88,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Is this an action ? (i.e. button click)
         /// </summary>
-        public bool IsAction
+        public virtual bool IsAction
         {
             get
             {
@@ -99,7 +99,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Is this a command ? Starts with a slash '/' and a command
         /// </summary>
-        public bool IsBotCommand
+        public virtual bool IsBotCommand
         {
             get
             {
@@ -110,7 +110,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Returns a List of all parameters which has been sent with the command itself (i.e. /start 123 456 789 => 123,456,789)
         /// </summary>
-        public List<String> BotCommandParameters
+        public virtual List<String> BotCommandParameters
         {
             get
             {
@@ -125,7 +125,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Returns just the command (i.e. /start 1 2 3 => /start)
         /// </summary>
-        public String BotCommand
+        public virtual string BotCommand
         {
             get
             {
@@ -139,11 +139,11 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Returns if this message will be used on the first form or not.
         /// </summary>
-        public bool IsFirstHandler { get; set; } = true;
+        public virtual bool IsFirstHandler { get; set; } = true;
 
-        public bool Handled { get; set; } = false;
+        public virtual bool IsHandled { get; set; } = false;
 
-        public String RawData
+        public virtual string RawData
         {
             get
             {
@@ -151,7 +151,7 @@ namespace TelegramBotBase.Base
             }
         }
 
-        public T GetData<T>()
+        public virtual T GetData<T>()
             where T : class
         {
             T cd = null;
@@ -174,7 +174,7 @@ namespace TelegramBotBase.Base
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public async Task ConfirmAction(String message = "", bool showAlert = false, String urlToOpen = null)
+        public virtual async Task ConfirmAction(String message = "", bool showAlert = false, string urlToOpen = null)
         {
             await this.Device.ConfirmAction(this.UpdateData.CallbackQuery.Id, message, showAlert, urlToOpen);
         }

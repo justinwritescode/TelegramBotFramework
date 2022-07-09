@@ -12,19 +12,18 @@ namespace TelegramBotBase.Form
     /// <summary>
     /// Base class for an buttons array
     /// </summary>
-    public class ButtonForm
+    public class ButtonForm : ICloneable
     {
-        List<ButtonRow> Buttons = new List<ButtonRow>();
+        public virtual List<ButtonRow> Buttons { get; } = new List<ButtonRow>();
 
+        public virtual IReplyMarkup Markup { get; set; }
 
-        public IReplyMarkup Markup { get; set; }
-
-        public ControlBase DependencyControl { get; set; }
+        public virtual ControlBase DependencyControl { get; set; }
 
         /// <summary>
         /// Contains the number of rows.
         /// </summary>
-        public int Rows
+        public virtual int Rows
         {
             get
             {
@@ -35,7 +34,7 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// Contains the highest number of columns in an row.
         /// </summary>
-        public int Cols
+        public virtual int Cols
         {
             get
             {
@@ -44,7 +43,7 @@ namespace TelegramBotBase.Form
         }
 
 
-        public ButtonRow this[int row]
+        public virtual ButtonRow this[int row]
         {
             get
             {
@@ -62,7 +61,7 @@ namespace TelegramBotBase.Form
             this.DependencyControl = control;
         }
 
-        public void AddButtonRow(String Text, String Value, String Url = null)
+        public virtual void AddButtonRow(String Text, string Value, string Url = null)
         {
             Buttons.Add(new List<ButtonBase>() { new ButtonBase(Text, Value, Url) });
         }
@@ -72,27 +71,27 @@ namespace TelegramBotBase.Form
         //    Buttons.Add(row.ToList());
         //}
 
-        public void AddButtonRow(ButtonRow row)
+        public virtual void AddButtonRow(ButtonRow row)
         {
             Buttons.Add(row);
         }
 
-        public void AddButtonRow(params ButtonBase[] row)
+        public virtual void AddButtonRow(params ButtonBase[] row)
         {
             AddButtonRow(row.ToList());
         }
 
-        public void AddButtonRows(IEnumerable<ButtonRow> rows)
+        public virtual void AddButtonRows(IEnumerable<ButtonRow> rows)
         {
             Buttons.AddRange(rows);
         }
 
-        public void InsertButtonRow(int index, IEnumerable<ButtonBase> row)
+        public virtual void InsertButtonRow(int index, IEnumerable<ButtonBase> row)
         {
             Buttons.Insert(index, row.ToList());
         }
 
-        public void InsertButtonRow(int index, ButtonRow row)
+        public virtual void InsertButtonRow(int index, ButtonRow row)
         {
             Buttons.Insert(index, row);
         }
@@ -122,7 +121,7 @@ namespace TelegramBotBase.Form
             return splitted;
         }
 
-        public int Count
+        public virtual int Count
         {
             get
             {
@@ -138,7 +137,7 @@ namespace TelegramBotBase.Form
         /// </summary>
         /// <param name="buttons"></param>
         /// <param name="buttonsPerRow"></param>
-        public void AddSplitted(IEnumerable<ButtonBase> buttons, int buttonsPerRow = 2)
+        public virtual void AddSplitted(IEnumerable<ButtonBase> buttons, int buttonsPerRow = 2)
         {
             var sp = SplitTo<ButtonBase>(buttons, buttonsPerRow);
 
@@ -154,37 +153,37 @@ namespace TelegramBotBase.Form
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public List<ButtonRow> GetRange(int start, int count)
+        public virtual List<ButtonRow> GetRange(int start, int count)
         {
             return Buttons.Skip(start).Take(count).ToList();
         }
 
 
-        public List<ButtonBase> ToList()
+        public virtual List<ButtonBase> ToList()
         {
             return this.Buttons.DefaultIfEmpty(new List<ButtonBase>()).Select(a => a.ToList()).Aggregate((a, b) => a.Union(b).ToList());
         }
 
-        public InlineKeyboardButton[][] ToInlineButtonArray()
+        public virtual InlineKeyboardButton[][] ToInlineButtonArray()
         {
             var ikb = this.Buttons.Select(a => a.ToArray().Select(b => b.ToInlineButton(this)).ToArray()).ToArray();
 
             return ikb;
         }
 
-        public KeyboardButton[][] ToReplyButtonArray()
+        public virtual KeyboardButton[][] ToReplyButtonArray()
         {
             var ikb = this.Buttons.Select(a => a.ToArray().Select(b => b.ToKeyboardButton(this)).ToArray()).ToArray();
 
             return ikb;
         }
 
-        public List<ButtonRow> ToArray()
+        public virtual List<ButtonRow> ToArray()
         {
             return Buttons;
         }
 
-        public int FindRowByButton(ButtonBase button)
+        public virtual int FindRowByButton(ButtonBase button)
         {
             var row = this.Buttons.FirstOrDefault(a => a.ToArray().Count(b => b == button) > 0);
             if (row == null)
@@ -193,7 +192,7 @@ namespace TelegramBotBase.Form
             return this.Buttons.IndexOf(row);
         }
 
-        public Tuple<ButtonRow, int> FindRow(String text, bool useText = true)
+        public virtual Tuple<ButtonRow, int> FindRow(String text, bool useText = true)
         {
             var r = this.Buttons.FirstOrDefault(a => a.Matches(text, useText));
             if (r == null)
@@ -209,7 +208,7 @@ namespace TelegramBotBase.Form
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public ButtonBase GetButtonByValue(String value)
+        public virtual ButtonBase GetButtonByValue(String value)
         {
             return this.ToList().Where(a => a.Value == value).FirstOrDefault();
         }
@@ -238,7 +237,7 @@ namespace TelegramBotBase.Form
         /// Creates a copy of this form.
         /// </summary>
         /// <returns></returns>
-        public ButtonForm Duplicate()
+        public virtual ButtonForm Clone()
         {
             var bf = new ButtonForm()
             {
@@ -263,7 +262,7 @@ namespace TelegramBotBase.Form
         /// Creates a copy of this form and filters by the parameter.
         /// </summary>
         /// <returns></returns>
-        public ButtonForm FilterDuplicate(String filter, bool ByRow = false)
+        public virtual ButtonForm FilterDuplicate(String filter, bool ByRow = false)
         {
             var bf = new ButtonForm()
             {
@@ -298,11 +297,13 @@ namespace TelegramBotBase.Form
             return bf;
         }
 
+        object ICloneable.Clone() => Clone();
+
         /// <summary>
         /// Creates a copy of this form and filters by the parameter.
         /// </summary>
         /// <returns></returns>
-        public ButtonForm TagDuplicate(List<String> tags, bool ByRow = false)
+        public virtual ButtonForm TagDuplicate(List<String> tags, bool ByRow = false)
         {
             var bf = new ButtonForm()
             {

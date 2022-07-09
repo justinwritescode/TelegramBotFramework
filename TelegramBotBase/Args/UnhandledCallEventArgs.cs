@@ -10,13 +10,13 @@ namespace TelegramBotBase.Args
 {
     public class UnhandledCallEventArgs : EventArgs
     {
-        public String Command { get; set; }
+        public string Command { get; set; }
 
         public long DeviceId { get; set; }
 
         public DeviceSession Device {get;set;}
 
-        public String RawData { get; set; }
+        public string RawData { get; set; }
 
         public int MessageId { get; set; }
 

@@ -18,21 +18,21 @@ namespace TelegramBotBase.Form
     public class FormBase : IDisposable
     {
 
-        public NavigationController NavigationController { get; set; }
+        public virtual NavigationController NavigationController { get; set; }
 
-        public DeviceSession Device { get; set; }
+        public virtual DeviceSession Device { get; set; }
 
-        public MessageClient Client { get; set; }
+        public virtual MessageClient Client { get; set; }
 
         /// <summary>
         /// has this formular already been disposed ?
         /// </summary>
-        public bool IsDisposed { get; set; } = false;
+        public virtual bool IsDisposed { get; set; } = false;
 
-        public List<ControlBase> Controls { get; set; }
+        public virtual List<ControlBase> Controls { get; set; }
 
 
-        public EventHandlerList Events = new EventHandlerList();
+        public virtual EventHandlerList Events { get; } = new EventHandlerList();
 
 
         private static object __evInit = new object();
@@ -42,10 +42,7 @@ namespace TelegramBotBase.Form
         private static object __evClosed = new object();
 
 
-        public FormBase()
-        {
-            this.Controls = new List<Base.ControlBase>();
-        }
+        public FormBase() => Controls = new List<ControlBase>();
 
         public FormBase(MessageClient Client) : this()
         {
@@ -53,7 +50,7 @@ namespace TelegramBotBase.Form
         }
 
 
-        public async Task OnInit(InitEventArgs e)
+        public virtual async Task OnInit(InitEventArgs e)
         {
             if (this.Events[__evInit] == null)
                 return;
@@ -71,7 +68,7 @@ namespace TelegramBotBase.Form
         ///// <summary>
         ///// Will get called at the initialization (once per context)
         ///// </summary>
-        public event AsyncEventHandler<InitEventArgs> Init
+        public virtual event AsyncEventHandler<InitEventArgs> Init
         {
             add
             {
@@ -85,7 +82,7 @@ namespace TelegramBotBase.Form
 
 
 
-        public async Task OnOpened(EventArgs e)
+        public virtual async Task OnOpened(EventArgs e)
         {
             if (this.Events[__evOpened] == null)
                 return;
@@ -104,7 +101,7 @@ namespace TelegramBotBase.Form
         /// Gets invoked if gets navigated to this form
         /// </summary>
         /// <returns></returns>
-        public event AsyncEventHandler<EventArgs> Opened
+        public virtual event AsyncEventHandler<EventArgs> Opened
         {
             add
             {
@@ -116,9 +113,9 @@ namespace TelegramBotBase.Form
             }
         }
 
-        
 
-        public async Task OnClosed(EventArgs e)
+
+        public virtual async Task OnClosed(EventArgs e)
         {
             if (this.Events[__evClosed] == null)
                 return;
@@ -138,7 +135,7 @@ namespace TelegramBotBase.Form
         /// Form has been closed (left)
         /// </summary>
         /// <returns></returns>
-        public event AsyncEventHandler<EventArgs> Closed
+        public virtual event AsyncEventHandler<EventArgs> Closed
         {
             add
             {
@@ -165,7 +162,7 @@ namespace TelegramBotBase.Form
         /// Pre to form close, cleanup all controls
         /// </summary>
         /// <returns></returns>
-        public async Task CloseControls()
+        public virtual async Task CloseControls()
         {
             foreach (var b in this.Controls)
             {
@@ -198,7 +195,7 @@ namespace TelegramBotBase.Form
 
             foreach (var b in this.Controls)
             {
-                if (!b.Enabled)
+                if (!b.IsEnabled)
                     continue;
 
                 await b.Load(message);
@@ -246,12 +243,12 @@ namespace TelegramBotBase.Form
 
             foreach (var b in this.Controls)
             {
-                if (!b.Enabled)
+                if (!b.IsEnabled)
                     continue;
 
                 await b.Action(message);
 
-                if (message.Handled)
+                if (message.IsHandled)
                     return;
             }
         }
@@ -285,7 +282,7 @@ namespace TelegramBotBase.Form
         {
             foreach (var b in this.Controls)
             {
-                if (!b.Enabled)
+                if (!b.IsEnabled)
                     continue;
 
                 await b.Render(message);
@@ -315,7 +312,7 @@ namespace TelegramBotBase.Form
             if (ds == null)
                 return;
 
-            ds.FormSwitched = true;
+            ds.HasFormBeenSwitched = true;
 
             ds.PreviousForm = ds.ActiveForm;
 
@@ -326,7 +323,7 @@ namespace TelegramBotBase.Form
             //Notify prior to close
             foreach (var b in this.Controls)
             {
-                if (!b.Enabled)
+                if (!b.IsEnabled)
                     continue;
 
                 await b.Hidden(true);
@@ -354,7 +351,7 @@ namespace TelegramBotBase.Form
 
             var parentForm = this;
 
-            ds.FormSwitched = true;
+            ds.HasFormBeenSwitched = true;
 
             ds.PreviousForm = ds.ActiveForm;
 
@@ -370,7 +367,7 @@ namespace TelegramBotBase.Form
 
             foreach (var b in this.Controls)
             {
-                if (!b.Enabled)
+                if (!b.IsEnabled)
                     continue;
 
                 await b.Hidden(false);
@@ -390,7 +387,7 @@ namespace TelegramBotBase.Form
             if (modalForm == null)
                 throw new Exception("No modal form");
 
-            ds.FormSwitched = true;
+            ds.HasFormBeenSwitched = true;
 
             ds.PreviousForm = ds.ActiveForm;
 
@@ -401,7 +398,7 @@ namespace TelegramBotBase.Form
         /// Adds a control to the formular and sets its ID and Device.
         /// </summary>
         /// <param name="control"></param>
-        public void AddControl(ControlBase control)
+        public virtual void AddControl(ControlBase control)
         {
             //Duplicate check
             if (this.Controls.Contains(control))
@@ -418,7 +415,7 @@ namespace TelegramBotBase.Form
         /// Removes control from the formular and runs a cleanup on it.
         /// </summary>
         /// <param name="control"></param>
-        public void RemoveControl(ControlBase control)
+        public virtual void RemoveControl(ControlBase control)
         {
             if (!this.Controls.Contains(control))
                 return;
@@ -431,9 +428,9 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// Removes all controls.
         /// </summary>
-        public void RemoveAllControls()
+        public virtual void RemoveAllControls()
         {
-            foreach(var c in this.Controls)
+            foreach (var c in this.Controls)
             {
                 c.Cleanup().Wait();
 
@@ -444,7 +441,7 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// Cleanup
         /// </summary>
-        public void Dispose()
+        public virtual void Dispose()
         {
             this.Client = null;
             this.Device = null;

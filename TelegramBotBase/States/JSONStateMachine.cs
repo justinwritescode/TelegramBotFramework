@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
 using TelegramBotBase.Args;
@@ -15,7 +16,7 @@ namespace TelegramBotBase.States
     /// </summary>
     public class JSONStateMachine : IStateMachine
     {
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
         public bool Overwrite { get; set; }
 
@@ -87,11 +88,12 @@ namespace TelegramBotBase.States
                     TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
                 });
 
+                Console.WriteLine("Wrote this: \n" + content);
                 System.IO.File.WriteAllText(FilePath, content);
             }
-            catch
+            catch (FileNotFoundException fnfex)
             {
-
+                Console.WriteLine("!!! ERROR !!!" + fnfex.Message + "\n" + fnfex.StackTrace);
             }
 
         }

@@ -19,13 +19,13 @@ namespace TelegramBotBase.Form.Navigation
         private List<FormBase> History { get; set; }
 
         [SaveState]
-        public int Index { get; set; }
+        public virtual int Index { get; set; }
 
         /// <summary>
         /// Will replace the controller when poping a form to the root form.
         /// </summary>
         [SaveState]
-        public bool ForceCleanupOnLastPop { get; set; }
+        public virtual bool ForceCleanupOnLastPop { get; set; }
 
         public NavigationController()
         {
@@ -95,7 +95,7 @@ namespace TelegramBotBase.Form.Navigation
             History.Remove(form);
             Index--;
 
-            Device.FormSwitched = true;
+            Device.HasFormBeenSwitched = true;
 
             await form.OnClosed(new EventArgs());
 
@@ -141,7 +141,7 @@ namespace TelegramBotBase.Form.Navigation
             this.History.Add(form);
             Index++;
 
-            Device.FormSwitched = true;
+            Device.HasFormBeenSwitched = true;
 
             if (Index < 2)
                 return;
@@ -168,7 +168,7 @@ namespace TelegramBotBase.Form.Navigation
         /// <summary>
         /// Returns the current form from the stack.
         /// </summary>
-        public FormBase CurrentForm
+        public virtual FormBase CurrentForm
         {
             get
             {
@@ -179,13 +179,13 @@ namespace TelegramBotBase.Form.Navigation
             }
         }
 
-        public List<FormBase> GetAllForms()
+        public virtual List<FormBase> GetAllForms()
         {
             return History.ToList();
         }
 
 
-        public void LoadState(LoadStateEventArgs e)
+        public virtual void LoadState(LoadStateEventArgs e)
         {
             if (e.Get("$controller.history.count") == null)
                 return;
@@ -266,7 +266,7 @@ namespace TelegramBotBase.Form.Navigation
 
         }
 
-        public void SaveState(SaveStateEventArgs e)
+        public virtual void SaveState(SaveStateEventArgs e)
         {
             e.Set("$controller.history.count", History.Count.ToString());
 

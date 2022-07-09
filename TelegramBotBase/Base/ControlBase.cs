@@ -15,7 +15,7 @@ namespace TelegramBotBase.Base
 
         public int ID { get; set; }
 
-        public String ControlID
+        public virtual string ControlID
         {
             get
             {
@@ -26,7 +26,7 @@ namespace TelegramBotBase.Base
         /// <summary>
         /// Defines if the control should be rendered and invoked with actions
         /// </summary>
-        public bool Enabled { get; set; } = true;
+        public virtual bool IsEnabled { get; set; } = true;
 
         /// <summary>
         /// Get invoked when control will be added to a form and invoked.
@@ -41,14 +41,14 @@ namespace TelegramBotBase.Base
         {
 
 
-            
+
         }
 
-        public virtual async Task Action(MessageResult result, String value = null)
+        public virtual async Task Action(MessageResult result, string value = null)
         {
 
 
-            
+
         }
 
 
@@ -58,13 +58,13 @@ namespace TelegramBotBase.Base
 
 
 
-            
+
         }
 
         public virtual async Task Hidden(bool FormClose)
         {
 
-            
+
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace TelegramBotBase.Base
         /// <returns></returns>
         public virtual async Task Cleanup()
         {
-            
+
         }
 
     }

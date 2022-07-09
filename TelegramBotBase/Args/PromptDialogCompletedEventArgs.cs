@@ -8,7 +8,7 @@ namespace TelegramBotBase.Args
     {
         public object Tag { get; set; }
 
-        public String Value { get; set; }
+        public string Value { get; set; }
 
     }
 }

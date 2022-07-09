@@ -15,7 +15,7 @@ namespace TelegramBotBase.Interfaces
         /// <summary>
         /// Username of user or group
         /// </summary>
-        String ChatTitle { get; set; }
+        string ChatTitle { get; set; }
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace TelegramBotBase.Interfaces
         /// <summary>
         /// contains if the form has been switched (navigated)
         /// </summary>
-        bool FormSwitched { get; set; }
+        bool HasFormBeenSwitched { get; set; }
 
     }
 }

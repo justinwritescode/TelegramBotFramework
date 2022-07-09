@@ -119,7 +119,7 @@ namespace TelegramBotBase.Controls.Inline
         /// <summary>
         /// Filled block (reached percentage)
         /// </summary>
-        public String BlockChar
+        public string BlockChar
         {
             get; set;
         }
@@ -127,23 +127,23 @@ namespace TelegramBotBase.Controls.Inline
         /// <summary>
         /// Unfilled block (not reached yet)
         /// </summary>
-        public String EmptyBlockChar
+        public string EmptyBlockChar
         {
             get; set;
         }
 
         /// <summary>
-        /// String at the beginning of the progress bar
+        /// string at the beginning of the progress bar
         /// </summary>
-        public String StartChar
+        public string StartChar
         {
             get; set;
         }
 
         /// <summary>
-        /// String at the end of the progress bar
+        /// string at the end of the progress bar
         /// </summary>
-        public String EndChar
+        public string EndChar
         {
             get; set;
         }
@@ -221,7 +221,7 @@ namespace TelegramBotBase.Controls.Inline
 
         }
 
-        public async override Task Render(MessageResult result)
+        public override async Task Render(MessageResult result)
         {
             if (!this.RenderNecessary)
             {
@@ -233,7 +233,7 @@ namespace TelegramBotBase.Controls.Inline
                 return;
             }
 
-            String message = "";
+            string message = "";
             int blocks = 0;
             int maxBlocks = 0;
 

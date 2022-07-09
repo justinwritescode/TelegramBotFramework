@@ -13,7 +13,7 @@ namespace TelegramBotBase.Args
     /// </summary>
     public class BotCommandEventArgs : EventArgs
     {
-        public String Command { get; set; }
+        public string Command { get; set; }
 
         public List<String> Parameters { get; set; }
 

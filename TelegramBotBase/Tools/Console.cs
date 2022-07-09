@@ -7,9 +7,12 @@ namespace TelegramBotBase.Tools
 {
     public static class Console
     {
+#if WIN32
         [DllImport("Kernel32")]
         private static extern bool SetConsoleCtrlHandler(EventHandler handler, bool add);
-
+#else
+        private static bool SetConsoleCtrlHandler(EventHandler handler, bool add) => true;
+#endif
         private delegate bool EventHandler(CtrlType sig);
         static EventHandler _handler;
 

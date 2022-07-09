@@ -12,14 +12,14 @@ namespace TelegramBotBase.Form
     /// </summary>
     public class TagButtonBase : ButtonBase
     {
-        public String Tag { get; set; }
+        public string Tag { get; set; }
 
         public TagButtonBase()
         {
 
         }
 
-        public TagButtonBase(String Text, String Value, String Tag)
+        public TagButtonBase(String Text, string Value, string Tag)
         {
             this.Text = Text;
             this.Value = Value;
@@ -34,7 +34,7 @@ namespace TelegramBotBase.Form
         /// <returns></returns>
         public override InlineKeyboardButton ToInlineButton(ButtonForm form)
         {
-            String id = (form.DependencyControl != null ? form.DependencyControl.ControlID + "_" : "");
+            string id = (form.DependencyControl != null ? form.DependencyControl.ControlID + "_" : "");
 
             return InlineKeyboardButton.WithCallbackData(this.Text, id + this.Value);
 

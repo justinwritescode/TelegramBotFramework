@@ -8,28 +8,28 @@ namespace TelegramBotBase.Controls.Inline
 {
     public class TreeViewNode
     {
-        public String Text { get; set; }
+        public string Text { get; set; }
 
-        public String Value { get; set; }
+        public string Value { get; set; }
 
-        public String Url { get; set; }
+        public string Url { get; set; }
 
         public List<TreeViewNode> ChildNodes { get; set; } = new List<TreeViewNode>();
 
         public TreeViewNode ParentNode { get; set; }
 
-        public TreeViewNode(String Text, String Value)
+        public TreeViewNode(String Text, string Value)
         {
             this.Text = Text;
             this.Value = Value;
         }
 
-        public TreeViewNode(String Text, String Value, String Url) : this(Text, Value)
+        public TreeViewNode(String Text, string Value, string Url) : this(Text, Value)
         {
             this.Url = Url;
         }
 
-        public TreeViewNode(String Text, String Value, params TreeViewNode[] childnodes) : this(Text, Value)
+        public TreeViewNode(String Text, string Value, params TreeViewNode[] childnodes) : this(Text, Value)
         {
             foreach(var c in childnodes)
             {
@@ -49,9 +49,9 @@ namespace TelegramBotBase.Controls.Inline
             return this.ChildNodes.FirstOrDefault(a => a.Value == Value);
         }
 
-        public String GetPath()
+        public string GetPath()
         {
-            String s = "\\" + this.Value;
+            string s = "\\" + this.Value;
             var p = this;
             while (p.ParentNode != null)
             {

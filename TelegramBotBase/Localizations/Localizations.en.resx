@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="Foo">
+		<value>Bar</value>
+	</data>
+	<data name="Language">
+		<value>English</value>
+	</data>
+	<data name="ButtonGrid_Title">
+		<value>Menu</value>
+	</data>
+	<data name="ButtonGrid_NoItems">
+		<value>There are no items.</value>
+	</data>
+	<data name="ButtonGrid_PreviousPage">
+		<value>◀️</value>
+	</data>
+	<data name="ButtonGrid_NextPage">
+		<value>▶️</value>
+	</data>
+	<data name="ButtonGrid_CurrentPage">
+		<value>Page {0} of {1}</value>
+	</data>
+	<data name="ButtonGrid_SearchFeature">
+		<value>💡 Send a message to filter the list. Click the 🔍 to reset the filter.</value>
+	</data>
+	<data name="ButtonGrid_Back">
+		<value>Back</value>
+	</data>
+	<data name="ButtonGrid_CheckAll">
+		<value>Check all</value>
+	</data>
+	<data name="ButtonGrid_UncheckAll">
+		<value>Uncheck all</value>
+	</data>
+	<data name="CalendarPicker_Title">
+		<value>Pick date</value>
+	</data>
+	<data name="CalendarPicker_PreviousPage">
+		<value>◀️</value>
+	</data>
+	<data name="CalendarPicker_NextPage">
+		<value>▶️</value>
+	</data>
+	<data name="TreeView_Title">
+		<value>Select node</value>
+	</data>
+	<data name="TreeView_LevelUp">
+		<value>🔼 level up</value>
+	</data>
+	<data name="ToggleButton_On">
+		<value>On</value>
+	</data>
+	<data name="ToggleButton_Off">
+		<value>Off</value>
+	</data>
+	<data name="ToggleButton_OnIcon">
+		<value>⚫</value>
+	</data>
+	<data name="ToggleButton_OffIcon">
+		<value>⚪</value>
+	</data>
+	<data name="ToggleButton_Title">
+		<value>Toggle</value>
+	</data>
+	<data name="ToggleButton_Changed">
+		<value>Choosen</value>
+	</data>
+	<data name="MultiToggleButton_SelectedIcon">
+		<value>✅</value>
+	</data>
+	<data name="MultiToggleButton_Title">
+		<value>Multi-Toggle</value>
+	</data>
+	<data name="MultiToggleButton_Changed">
+		<value>Choosen</value>
+	</data>
+	<data name="PromptDialog_Back">
+		<value>Back</value>
+	</data>
+	<data name="ToggleButton_Changed">
+		<value>Setting changed</value>
+	</data>
+</root>

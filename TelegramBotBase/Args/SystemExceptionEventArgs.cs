@@ -10,7 +10,7 @@ namespace TelegramBotBase.Args
     public class SystemExceptionEventArgs : EventArgs
     {
 
-        public String Command { get; set; }
+        public string Command { get; set; }
 
         public long DeviceId { get; set; }
 

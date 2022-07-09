@@ -17,7 +17,7 @@ namespace TelegramBotBase.Builder
     public class BotBaseBuilder : IAPIKeySelectionStage, IMessageLoopSelectionStage, IStartFormSelectionStage, IBuildingStage, INetworkingSelectionStage, IBotCommandsStage, ISessionSerializationStage, ILanguageSelectionStage
     {
 
-        String _apiKey = null;
+        string _apiKey = null;
 
         IStartFormFactory _factory = null;
 
@@ -111,7 +111,7 @@ namespace TelegramBotBase.Builder
 
         public IStartFormSelectionStage DefaultMessageLoop()
         {
-            _messageloopfactory = new Factories.MessageLoops.FormBaseMessageLoop();
+            _messageloopfactory = new Factories.MessageLoops.FormBaseMessageLoopFactory();
 
             return this;
         }

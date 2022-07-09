@@ -16,7 +16,7 @@ namespace TelegramBotBase.Form
         /// <summary>
         /// The message the users sees.
         /// </summary>
-        public String Message { get; set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// An additional optional value.
@@ -62,7 +62,7 @@ namespace TelegramBotBase.Form
 
         public override async Task Action(MessageResult message)
         {
-            if (message.Handled)
+            if (message.IsHandled)
                 return;
 
             if (!message.IsFirstHandler)
@@ -72,7 +72,7 @@ namespace TelegramBotBase.Form
             if (call == null)
                 return;
 
-            message.Handled = true;
+            message.IsHandled = true;
 
             await message.ConfirmAction();
 

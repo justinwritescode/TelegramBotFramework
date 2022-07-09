@@ -14,17 +14,17 @@ namespace TelegramBotBase.Controls.Inline
         /// <summary>
         /// This contains the selected icon.
         /// </summary>
-        public String SelectedIcon { get; set; } = Localizations.Default.Language["MultiToggleButton_SelectedIcon"];
+        public string SelectedIcon { get; set; } = Localizations.Default.Language["MultiToggleButton_SelectedIcon"];
 
         /// <summary>
         /// This will appear on the ConfirmAction message (if not empty)
         /// </summary>
-        public String ChangedString { get; set; } = Localizations.Default.Language["MultiToggleButton_Changed"];
+        public string ChangedString { get; set; } = Localizations.Default.Language["MultiToggleButton_Changed"];
 
         /// <summary>
         /// This holds the title of the control.
         /// </summary>
-        public String Title { get; set; } = Localizations.Default.Language["MultiToggleButton_Title"];
+        public string Title { get; set; } = Localizations.Default.Language["MultiToggleButton_Title"];
 
         public int? MessageId { get; set; }
 
@@ -67,9 +67,9 @@ namespace TelegramBotBase.Controls.Inline
             (this.Events[__evToggled] as EventHandler)?.Invoke(this, e);
         }
 
-        public override async Task Action(MessageResult result, String value = null)
+        public override async Task Action(MessageResult result, string value = null)
         {
-            if (result.Handled)
+            if (result.IsHandled)
                 return;
 
             await result.ConfirmAction(this.ChangedString);
@@ -111,7 +111,7 @@ namespace TelegramBotBase.Controls.Inline
 
             }
 
-            result.Handled = true;
+            result.IsHandled = true;
 
         }
 

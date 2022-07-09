@@ -14,7 +14,7 @@ namespace TelegramBotBase.States
 {
     public class XMLStateMachine : IStateMachine
     {
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
         public bool Overwrite { get; set; }
 

@@ -14,7 +14,7 @@ namespace TelegramBotBase.Extensions.Images
     {
         public static Stream ToStream(this Image image, ImageFormat format)
         {
-            var stream = new System.IO.MemoryStream();
+            var stream = new MemoryStream();
             image.Save(stream, format);
             stream.Position = 0;
             return stream;
@@ -29,14 +29,12 @@ namespace TelegramBotBase.Extensions.Images
         /// <param name="replyTo"></param>
         /// <param name="disableNotification"></param>
         /// <returns></returns>
-        public static async Task<Message> SendPhoto(this DeviceSession session, Image image, String name, String caption, ButtonForm buttons = null, int replyTo = 0, bool disableNotification = false)
+        public static async Task<Message> SendPhoto(this DeviceSession session, Image image, string name, string caption, ButtonForm buttons = null, int replyTo = 0, bool disableNotification = false)
         {
-            using (var fileStream = ToStream(image, ImageFormat.Png))
-            {
-                InputOnlineFile fts = new InputOnlineFile(fileStream, name);
+            using var fileStream = ToStream(image, ImageFormat.Png);
+            var fts = new InputOnlineFile(fileStream, name);
 
-                return await session.SendPhoto(fts, caption: caption, buttons, replyTo, disableNotification);
-            }
+            return await session.SendPhoto(fts, caption: caption, buttons, replyTo, disableNotification);
         }
 
         /// <summary>
@@ -48,14 +46,12 @@ namespace TelegramBotBase.Extensions.Images
         /// <param name="replyTo"></param>
         /// <param name="disableNotification"></param>
         /// <returns></returns>
-        public static async Task<Message> SendPhoto(this DeviceSession session, Bitmap image, String name, String caption, ButtonForm buttons = null, int replyTo = 0, bool disableNotification = false)
+        public static async Task<Message> SendPhoto(this DeviceSession session, Bitmap image, string name, string caption, ButtonForm buttons = null, int replyTo = 0, bool disableNotification = false)
         {
-            using (var fileStream = ToStream(image, ImageFormat.Png))
-            {
-                InputOnlineFile fts = new InputOnlineFile(fileStream, name);
+            using var fileStream = ToStream(image, ImageFormat.Png);
+            var fts = new InputOnlineFile(fileStream, name);
 
-                return await session.SendPhoto(fts, caption: caption, buttons, replyTo, disableNotification);
-            }
+            return await session.SendPhoto(fts, caption: caption, buttons, replyTo, disableNotification);
         }
     }
 }

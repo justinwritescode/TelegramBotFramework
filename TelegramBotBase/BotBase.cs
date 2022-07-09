@@ -31,7 +31,7 @@ namespace TelegramBotBase
         /// <summary>
         /// Your TelegramBot APIKey
         /// </summary>
-        public String APIKey { get; set; } = "";
+        public string APIKey { get; set; } = "";
 
         /// <summary>
         /// List of all running/active sessions
@@ -154,13 +154,13 @@ namespace TelegramBotBase
                 i++;
 
                 //Reset navigation
-                ds.FormSwitched = false;
+                ds.HasFormBeenSwitched = false;
 
                 await MessageLoopFactory.MessageLoop(this, ds, e, mr);
 
                 mr.IsFirstHandler = false;
 
-            } while (ds.FormSwitched && i < this.GetSetting(eSettings.NavigationMaximum, 10));
+            } while (ds.HasFormBeenSwitched && i < this.GetSetting(eSettings.NavigationMaximum, 10));
         }
 
 
